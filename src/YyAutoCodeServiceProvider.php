@@ -21,11 +21,11 @@ class YyAutoCodeServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
 
             $this->publishes([
-                __DIR__ . '/config/autocode.php' => config_path('autocode.php'),
+                __DIR__ . '/../config/autocode.php' => config_path('autocode.php'),
             ], 'config');
 
             $this->publishes([
-                __DIR__.'/../views' => resource_path('views/vendor/autocode'),
+                __DIR__.'/../resources/views' => resource_path('views/vendor/autocode'),
             ], 'autocode');
 
         }
