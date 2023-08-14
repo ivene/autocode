@@ -33,8 +33,8 @@ class YNewControllerCommand extends Command
     {
 
         $modelName =ucfirst($this->argument('modelName'));
-        Log::info(config('yyauto'));
-        $config  =   json_decode(json_encode(config('yyauto')));
+        Log::info(config('autocode'));
+        $config  =   json_decode(json_encode(config('autocode')));
 
         $view_data = ['config'=> $config,'modelName'=>$modelName,'project'=>$config->project];
 
@@ -46,7 +46,7 @@ class YNewControllerCommand extends Command
         $model_path = $config->path->model.$config->project."/";
         $base_model_path =  $config->path->model.$config->project."/Base/";
         $model_file = $modelName.".php";
-        $model_content = view("yy.model.model",$view_data);
+        $model_content = view("auto.model.model",$view_data);
         $file->createDirectoryIfNotExist($base_model_path);
         $file->createFile($model_path.$model_file,$model_content);
 
@@ -57,7 +57,7 @@ class YNewControllerCommand extends Command
 
         $controller_path = $config->path->controller.$config->project."/";
         $controller_file = $modelName."Controller.php";
-        $controller_content =  view("yy.controller.base",$view_data);
+        $controller_content =  view("autocode.controller.base",$view_data);
 
         $file->createDirectoryIfNotExist($controller_path);
         $file->createFile($controller_path.$controller_file,$controller_content);
