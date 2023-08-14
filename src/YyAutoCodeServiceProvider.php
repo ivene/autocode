@@ -1,5 +1,5 @@
 <?php
-
+namespace Ivene\AutoCode;
 
 use Illuminate\Support\ServiceProvider;
 use Ivene\AutoCode\Commands\YNewProject;
