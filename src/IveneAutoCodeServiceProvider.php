@@ -2,6 +2,9 @@
 namespace Ivene\AutoCode;
 
 use Illuminate\Support\ServiceProvider;
+use Ivene\AutoCode\Commands\YInitPasswordCommand;
+use Ivene\AutoCode\Commands\YModelUpdateCommand;
+use Ivene\AutoCode\Commands\YNewControllerCommand;
 use Ivene\AutoCode\Commands\YNewProject;
 use Ivene\AutoCode\Commands\YScope;
 
@@ -10,7 +13,7 @@ use Ivene\AutoCode\Commands\YScope;
  * @author YaoYao
  * @time 2023/8/14 17:04
  */
-class YyAutoCodeServiceProvider extends ServiceProvider
+class IveneAutoCodeServiceProvider extends ServiceProvider
 {
 
     public function boot(){
@@ -25,7 +28,7 @@ class YyAutoCodeServiceProvider extends ServiceProvider
             ], 'config');
 
             $this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/autocode'),
+                __DIR__.'/../resources/views' => resource_path('views/vendor/'),
             ], 'autocode');
 
         }
@@ -46,11 +49,11 @@ class YyAutoCodeServiceProvider extends ServiceProvider
             return;
         }
         $this->commands([
-
+            YInitPasswordCommand::class,
+            YModelUpdateCommand::class,
             YNewProject::class,
             YScope::class,
-
-
+            YNewControllerCommand::class
         ]);
 
 
