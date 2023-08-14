@@ -46,12 +46,9 @@ class YNewControllerCommand extends Command
         $model_path = $config->path->model.$config->project."/";
         $base_model_path =  $config->path->model.$config->project."/Base/";
         $model_file = $modelName.".php";
-        $model_content = view("auto.model.model",$view_data);
+        $model_content = view("autocode.model.model",$view_data);
         $file->createDirectoryIfNotExist($base_model_path);
         $file->createFile($model_path.$model_file,$model_content);
-
-
-
 
 
 
