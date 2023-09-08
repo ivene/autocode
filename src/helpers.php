@@ -1,50 +1,25 @@
 <?php
 
 use Illuminate\Support\Str;
-use InfyOm\Generator\Common\FileSystem;
-
-if (!function_exists('g_filesystem')) {
+use Ivene\AutoCode\Common\DataTable;
+use Ivene\AutoCode\Common\FileSystem;
+if (!function_exists('yfile')) {
     /**
      * @return FileSystem
      */
-    function g_filesystem()
+    function yfile(): FileSystem
     {
         return app(FileSystem::class);
     }
 }
 
-if (!function_exists('infy_tab')) {
-    function infy_tab(int $spaces = 4): string
+if (!function_exists('ytable')) {
+    /**
+     * @return DataTable
+     */
+    function ytable(): DataTable
     {
-        return str_repeat(' ', $spaces);
-    }
-}
-
-if (!function_exists('infy_tabs')) {
-    function infy_tabs(int $tabs, int $spaces = 4): string
-    {
-        return str_repeat(infy_tab($spaces), $tabs);
-    }
-}
-
-if (!function_exists('infy_nl')) {
-    function infy_nl(int $count = 1): string
-    {
-        return str_repeat(PHP_EOL, $count);
-    }
-}
-
-if (!function_exists('infy_nls')) {
-    function infy_nls(int $count, int $nls = 1): string
-    {
-        return str_repeat(infy_nl($nls), $count);
-    }
-}
-
-if (!function_exists('infy_nl_tab')) {
-    function infy_nl_tab(int $lns = 1, int $tabs = 1): string
-    {
-        return infy_nls($lns).infy_tabs($tabs);
+        return app(DataTable::class);
     }
 }
 

@@ -1,7 +1,7 @@
 @php
     echo "<?php".PHP_EOL;
 @endphp
-namespace App\Http\Controllers\{{$project}}\{{ $modelName }};
+namespace App\Http\Controllers\{{$project}};
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\{{ $project }}\Save{{ $modelName }}Request;
@@ -29,7 +29,7 @@ class {{ $modelName }}Controller extends Controller
 
     public function getList(): View|Factory|Application
     {
-    return view("{{ strtolower($project) }}.{{strtolower($modelName)}}.list");
+    return view("{{ strtolower($project) }}.{{$tableinfo->name}}.list");
     }
 
     public function getListData(): JsonResponse
