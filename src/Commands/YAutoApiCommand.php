@@ -3,6 +3,7 @@
 namespace Ivene\AutoCode\Commands;
 
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Command\Command as CommandAlias;
 
 class YAutoApiCommand extends Command
 {
@@ -11,22 +12,22 @@ class YAutoApiCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'yy:autoapi';
+    protected $signature = 'yy:autoapi {tableName} {dbName?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = '创建API代码';
 
     /**
      * Execute the console command.
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
-        return Command::SUCCESS;
+        return CommandAlias::SUCCESS;
     }
 }
