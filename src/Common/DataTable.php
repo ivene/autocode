@@ -33,10 +33,9 @@ class DataTable
 
 
         foreach ($cols as  $col){
+            Log::info("字段信息==".json_encode($col));
             $enums = collect();
-
             if($col->Key == 'PRI'){
-                Log::info("表主键".json_encode($col));
                 $table_info->primary_key = $col->Field;
             }else{
                 $field_str .="        '".$col->Field."', // ".$col->Comment."\n";
@@ -44,14 +43,6 @@ class DataTable
                 $field->name = $col->Field;
                 $field->comment = $col->Comment;
                 $field->type = $col->Type;
-
-                $field->validation = "required|";
-                if(Str::contains('int',$col->Type)){
-                    $field->validation .= "numeric|";
-                }
-                if(Str::contains('varchar',$col->Type)){
-                    $field->validation .= "string|";
-                }
 
                 if(!empty($col->Comment)){
                     $temp =  explode(" ",$col->Comment);
@@ -61,14 +52,14 @@ class DataTable
                     preg_match_all("/(?:\{enum:)(.*)(?:\})/i",$col->Comment,$enum_result);
                     if(array_key_exists(1,$enum_result) && array_key_exists(0,$enum_result[1])){
                         $enum_info = $enum_result[1][0];
+                        Log::info("====含有枚举=".$enum_info);
                         if(!empty($enum_info)){
                             $temp_enums = explode(';',$enum_info);
                             if(!empty($temp_enums)){
                                 foreach ($temp_enums as $temp_enum){
-                                    $temp = [];
-
+                                    $temp = null;
                                     if(!empty($temp_enum)) {
-                                        $temp[] = explode(",", $temp_enum);
+                                        $temp = explode(",", $temp_enum);
                                         if(count($temp)>1){
                                             $enums->push(collect(['key' => $temp[0], 'value' => $temp[1]]));
                                         }
@@ -79,16 +70,30 @@ class DataTable
                     }
                     $field->enums = $enums;
 //                    $field->enums = $enums->toArray();
-
-
-
-
-
                 }else{
                     $field->title = "";
                 }
+
                 if(array_key_exists($field->name,$show_info)){
                     $field->title =  $show_info[$field->name];
+                }
+
+
+                if($col->Null=='NO'){
+                    $field->validation = "required";
+                    if(Str::contains($col->Type,'int')){
+                        $field->validation .= "|integer";
+                        $field->example = 1;
+                    }elseif(Str::contains($col->Type,'varchar')){
+                        $field->validation .= "|string";
+                        if(in_array($field->name,['mobile','tel'])){
+                            $field->example='18610116681';
+                        }else{
+                            $field->example=$field->title;
+                        }
+                    }else{
+                        Log::info("未匹配定义类型".$col->Type);
+                    }
                 }
                 $fields[] = $field;
             }

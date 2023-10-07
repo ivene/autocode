@@ -39,7 +39,11 @@ class YAutoCodeCommand extends Command
 //        Log::info('modelName===='.$modelName);
 //        Log::info(config('autocode'));
         $config  =   json_decode(json_encode(config('autocode')));
-        $view_data = ['config'=> $config,'modelName'=>$modelName,'project'=>$config->project,'nowtime'=>Carbon::now()->toDateTimeString()];
+        $view_data = ['config'=> $config,
+            'modelName'=>$modelName,
+            'project'=>$config->project,
+            'objectName' => Str::lcfirst($modelName) ,
+            'nowtime'=>Carbon::now()->toDateTimeString()];
 //        exec("php artisan yy:basemodel game_map Ouroots/Base");
         //BaseModel
         $base_model_path =  $config->path->model.$config->project."/Base/";

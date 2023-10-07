@@ -2,12 +2,15 @@
 namespace Ivene\AutoCode;
 
 use Illuminate\Support\ServiceProvider;
+use Ivene\AutoCode\Commands\YAutoApiCommand;
 use Ivene\AutoCode\Commands\YAutoCodeCommand;
+use Ivene\AutoCode\Commands\YInitDataCommand;
 use Ivene\AutoCode\Commands\YInitPasswordCommand;
 use Ivene\AutoCode\Commands\YModelUpdateCommand;
 use Ivene\AutoCode\Commands\YNewControllerCommand;
 use Ivene\AutoCode\Commands\YNewProject;
 use Ivene\AutoCode\Commands\YScope;
+
 
 /**
  * @description
@@ -54,7 +57,9 @@ class IveneAutoCodeServiceProvider extends ServiceProvider
             YModelUpdateCommand::class,
             YNewProject::class,
             YScope::class,
-            YAutoCodeCommand::class
+            YAutoCodeCommand::class,
+            YAutoApiCommand::class,
+            YInitDataCommand::class
         ]);
 
 

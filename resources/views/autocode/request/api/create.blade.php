@@ -2,20 +2,18 @@
     echo "<?php".PHP_EOL;
 @endphp
 
-namespace App\Http\Requests\{{$project}};
+namespace {{$config->namespace->api_request}};
 
 use App\Http\Requests\ApiRequest;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Request;
 
-class {{$modleName}}ApiRequest extends ApiRequest
+class Create{{$modelName}}Request extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -29,7 +27,9 @@ class {{$modleName}}ApiRequest extends ApiRequest
     {
         return [
 @foreach($tableinfo->fields as $field)
+@if(!empty($field->validation))
             '{{$field->name}}' => "{{$field->validation}}",
+@endif
 @endforeach
         ];
     }
@@ -38,8 +38,12 @@ class {{$modleName}}ApiRequest extends ApiRequest
     {
         return [
 @foreach($tableinfo->fields as $field)
-@if($field->type)
-            '{{$field->name}}' => ['description' => '{{$field->comment}}', 'example' => '1'],
+@if(!empty($field->validation))
+            '{{$field->name}}' => [
+                'description' => '{{$field->title}}',
+                'example' => '{{$field->example}}',
+            ],
+@endif
 @endforeach
         ];
     }

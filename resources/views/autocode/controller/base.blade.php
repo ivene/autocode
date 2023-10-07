@@ -34,7 +34,7 @@ class {{ $modelName }}Controller extends Controller
 
     public function getListData(): JsonResponse
     {
-        $query = {{$modelName}}::with("master:id,login_name,nick_name,mobile");
+        $query = {{$modelName}}::listAll();
         $datatable = DataTables::eloquent($query);
         return $datatable->make();
     }
