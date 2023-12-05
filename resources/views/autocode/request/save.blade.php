@@ -27,7 +27,9 @@ class Save{{$modelName}}Request extends FormRequest
     {
         return [
 @foreach($tableinfo->fields as $field)
+    @if(!empty($field->valadation))
         '{{$field->name}}' => "{{$field->validation}}",
+    @endif
 @endforeach
         ];
     }
@@ -35,9 +37,9 @@ class Save{{$modelName}}Request extends FormRequest
     public function attributes(): array
     {
         return [
-        @foreach($tableinfo->fields as $field)
+@foreach($tableinfo->fields as $field)
         '{{$field->name}}' => "{{$field->title}}",
-        @endforeach
+@endforeach
         ];
     }
 }
