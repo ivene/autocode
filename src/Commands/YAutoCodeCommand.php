@@ -87,12 +87,14 @@ class YAutoCodeCommand extends Command
         $request_file = "Save".$modelName."Request.php";
         $request_content =  view("vendor.autocode.request.save",$view_data);
 
-        if(file_exists($request_path.$request_file)){
-            $this->message('[File] '.$request_file." 已经存在","SKIPPED","warn");
-        }else{
-            yfile()->createFile($request_path.$request_file,$request_content);
-            $this->message('[File] '.$request_file." 创建成功","DONE");
-        }
+//        if(file_exists($request_path.$request_file)){
+//            $this->message('[File] '.$request_file." 已经存在","SKIPPED","warn");
+//        }else{
+//            yfile()->createFile($request_path.$request_file,$request_content);
+//            $this->message('[File] '.$request_file." 创建成功","DONE");
+//        }
+        yfile()->createFile($request_path.$request_file,$request_content);
+        $this->message('[File] '.$request_file." 创建成功","DONE");
 
 
 

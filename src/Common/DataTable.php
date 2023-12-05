@@ -79,7 +79,7 @@ class DataTable
                 }
 
 
-                if($col->Null=='NO'){
+                if($col->Null=='NO'){ //不为空
                     $field->validation = "required";
                     if(Str::contains($col->Type,'int')){
                         $field->validation .= "|integer";
@@ -91,6 +91,9 @@ class DataTable
                         }else{
                             $field->example=$field->title;
                         }
+                    }elseif(Str::contains($col->Type,'text')){
+                        $field->validation .= "|string";
+                        $field->example=$field->title;
                     }else{
                         Log::info("未匹配定义类型".$col->Type);
                     }

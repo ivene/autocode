@@ -13,4 +13,5 @@ class TableField
     public string $comment;
     public string $validation="";
     public mixed $enums;
+    public string $example;
 }

@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9a48e6b-88bd-433d-a5ce-5e5506cf37a1" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/autocode.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/autocode.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/autocode/request/api.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/YAutoApiCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/YAutoApiCommand.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/YAutoCodeCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/YAutoCodeCommand.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Common/DataTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Common/DataTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IveneAutoCodeServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/IveneAutoCodeServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DTO/TableField.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/TableField.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +138,7 @@
       <workItem from="1692012282503" duration="36000" />
       <workItem from="1694162199743" duration="676000" />
       <workItem from="1694163863878" duration="1496000" />
+      <workItem from="1701746688053" duration="58000" />
     </task>
     <servers />
   </component>
