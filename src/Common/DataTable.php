@@ -43,8 +43,6 @@ class DataTable
                 $field->name = $col->Field;
                 $field->comment = $col->Comment;
                 $field->type = $col->Type;
-                $field->example ="";
-
 
                 if(!empty($col->Comment)){
                     $temp =  explode(" ",$col->Comment);
@@ -96,6 +94,15 @@ class DataTable
                     }elseif(Str::contains($col->Type,'text')){
                         $field->validation .= "|string";
                         $field->example=$field->title;
+                    }elseif(Str::contains($col->Type,'tinyint')){
+                        $field->validation .= "|integer";
+                        $field->example=1;
+                    }elseif(Str::contains($col->Type,'datetime')){
+                        $field->validation .= "|string";
+                        $field->example='2024-01-01 11:11:11';
+                    }elseif(Str::contains($col->Type,'decimal')){
+                        $field->validation .= "|numeric";
+                        $field->example='1.0';
                     }else{
                         Log::info("未匹配定义类型".$col->Type);
                     }
