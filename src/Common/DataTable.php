@@ -43,6 +43,8 @@ class DataTable
                 $field->name = $col->Field;
                 $field->comment = $col->Comment;
                 $field->type = $col->Type;
+                $field->example ="";
+
 
                 if(!empty($col->Comment)){
                     $temp =  explode(" ",$col->Comment);
