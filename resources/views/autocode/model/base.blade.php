@@ -20,5 +20,10 @@ class Base{{$modelName}} extends Model
     '{{$field->name}}', //{{$field->comment}}
     @endforeach
     ];
+
+    protected function serializeDate(\DateTimeInterface $date): string
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
 }
 //AutoCode Created at {{$nowtime}}
