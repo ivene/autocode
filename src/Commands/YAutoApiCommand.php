@@ -46,8 +46,9 @@ class YAutoApiCommand extends Command
             'nowtime'=>Carbon::now()->toDateTimeString()];
         $view_data['tableinfo'] = ytable()->getTableInfo($tableName,$conn);
 
+        dump("=====配置数据=====");
         dump($view_data);
-
+        dump("=====配置数据=====");
         //API Controller
         $api_controller_path =  $config->path->api_controller;
         $api_controller_file = $modelName."ApiController.php";
