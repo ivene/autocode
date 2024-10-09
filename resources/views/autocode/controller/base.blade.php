@@ -39,6 +39,35 @@ class {{ $modelName }}Controller extends Controller
         return $datatable->make();
     }
 
+
+    public function disable(Request $request): JsonResponse
+    {
+        Log::info("禁用信息{{$modelName}}",$request->all());
+        $result =new Result();
+        $id = $request->id;
+        if($this->adminUser->isAdmin()){
+            if($request->ajax()) {
+                try {
+                    $info = {{$modelName}}::id($id)->first();
+                    $info->status = $request->status;
+                    $info->save();
+                    $result->code = Constant::OK;
+                    $result->msg = "操作成功";
+                } catch (\Exception $e) {
+                    Log::error($e);
+                    Log::error("==========".$e->getFile().";".$e->getLine().";".$e->getMessage());
+                    $result->msg  = "操作失败:".$e->getMessage();
+                }
+            }else{
+                $result->msg  = "Invalid Request";
+            }
+        }else{
+            $result->msg  = "没有权限";
+        }
+        return response()->json(fixResult($result));
+    }
+
+
     public function save(Save{{$modelName}}Request $request): JsonResponse
     {
         Log::info("编辑信息",$request->all());
